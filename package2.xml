@@ -14,10 +14,10 @@ require_once 'HTML/QuickForm.php';
 require_once 'HTML/QuickForm/DHTMLRulesTableless.php';
 require_once 'HTML/QuickForm/Renderer/Tableless.php';
 
-$form =& new HTML_QuickForm_DHTMLRulesTableless(...);
+$form =&amp; new HTML_QuickForm_DHTMLRulesTableless(...);
 // you can use $form the same way as when instantiating HTML_QuickForm
-$renderer =& new HTML_QuickForm_Renderer_Tableless();
-$GLOBALS['_HTML_QuickForm_default_renderer'] =& $renderer;
+$renderer =&amp; new HTML_QuickForm_Renderer_Tableless();
+$GLOBALS['_HTML_QuickForm_default_renderer'] =&amp; $renderer;
 
 // usual code, e.g. new form fields, rules, ...
 
@@ -38,7 +38,7 @@ echo $form->display();</description>
   <release>alpha</release>
   <api>alpha</api>
  </stability>
- <license uri="http://www.php.net/license/3_01.txt">PHP License</license>
+ <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
  <notes>
 initial PEAR release
  </notes>
