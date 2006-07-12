@@ -17,11 +17,11 @@ require_once 'HTML/QuickForm/Renderer/Tableless.php';
 $form =&amp; new HTML_QuickForm_DHTMLRulesTableless(...);
 // you can use $form the same way as when instantiating HTML_QuickForm
 $renderer =&amp; new HTML_QuickForm_Renderer_Tableless();
-$GLOBALS['_HTML_QuickForm_default_renderer'] =&amp; $renderer;
 
 // usual code, e.g. new form fields, rules, ...
 
-echo $form->display();</description>
+$form->accept($renderer);
+echo $renderer->toHtml();</description>
  <lead>
   <name>Mark Wiesemann</name>
   <user>wiesemann</user>
