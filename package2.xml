@@ -28,10 +28,10 @@ echo $renderer->toHtml();</description>
   <email>wiesemann@php.net</email>
   <active>yes</active>
  </lead>
- <date>2006-07-11</date>
- <time>21:05:00</time>
+ <date>2006-08-13</date>
+ <time>22:20:00</time>
  <version>
-  <release>0.1.1</release>
+  <release>0.1.2</release>
   <api>0.1.1</api>
  </version>
  <stability>
@@ -40,7 +40,8 @@ echo $renderer->toHtml();</description>
  </stability>
  <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
  <notes>
-initial PEAR release
+- the example file was extended and corrected to be fully XHTML valid, it also
+  contains the latest stylesheet changes from the Tableless renderer
  </notes>
  <contents>
   <dir name="/">
@@ -69,7 +70,7 @@ initial PEAR release
    <package>
     <name>HTML_QuickForm_Renderer_Tableless</name>
     <channel>pear.php.net</channel>
-    <min>0.3.0</min>
+    <min>0.3.3</min>
    </package>
   </required>
  </dependencies>

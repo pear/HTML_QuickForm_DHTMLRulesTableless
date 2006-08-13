@@ -1,4 +1,17 @@
-<style type="text/css">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+  <head>
+    <style type="text/css">
+/* this style is used only for this example to make it look better */
+/* only the second block (it's the same as in data/stylesheet.css) is relevant */
+body {
+    margin-left: 10px;
+    font-family: Arial,sans-serif;
+    font-size: small;
+}
+    </style>
+    <style type="text/css">
 form {
     margin: 0;
     padding: 0;
@@ -11,6 +24,9 @@ form fieldset {
     padding: 10px 0;
     margin: 0;
     width: 560px;
+}
+form fieldset.hidden {
+    border: 0;
 }
 form fieldset legend {
     font-weight: bold;
@@ -41,14 +57,17 @@ form div.qfelement {
     margin: 5px 0 0 10px;
     padding: 0;
 }
-form span.error {
+form span.error, form span.required {
     color: red;
 }
 form div.error {
     border: 1px solid red;
     padding: 5px;
 }
-</style>
+    </style>
+    <title>HTML_QuickForm_DHTMLRulesTableless example</title>
+  </head>
+  <body>
 <?php
 
 require_once 'HTML/QuickForm.php';
@@ -56,6 +75,7 @@ require_once 'HTML/QuickForm/DHTMLRulesTableless.php';
 require_once 'HTML/QuickForm/Renderer/Tableless.php';
 
 $form = new HTML_QuickForm_DHTMLRulesTableless('contact', null, null, null, null, true);
+$form->removeAttribute('name');  // for XHTML validity
 
 $form->addElement('text', 'fieldsetlesselement', 'Element before header:', array('style' => 'width: 300px;'));
 
@@ -63,6 +83,7 @@ $form->addElement('header', 'header', 'Tableless renderer example (using DHTMLRu
 
 $form->addElement('text', 'name', 'Your name:', array('style' => 'width: 300px;'));
 $form->addElement('text', 'email', 'Your email:', array('style' => 'width: 300px;'));
+$form->addElement('text', 'emptylabel', '', array('style' => 'width: 300px;'));
 $form->addElement('text', 'subject', 'Your subject:', array('style' => 'width: 300px;'));
 $form->addElement('checkbox', 'single', 'Checkbox example:', ' Check me if you agree to receive spam ;-)');
 
@@ -91,7 +112,7 @@ $form->addGroup($checkbox, 'group3', 'Choose a country:', '<br />');
 
 $form->addElement('header', 'header3', 'The third fieldset');
 
-$form->addElement('textarea', 'message', 'Your message:', array('style' => 'width: 300px;', 'rows' => '7'));
+$form->addElement('textarea', 'message', 'Your message:', array('style' => 'width: 300px;', 'cols' => 50, 'rows' => '7'));
 $form->addElement('submit', 'submit', 'Submit');
 
 $form->addRule('name', 'Please enter your name', 'required', null, 'client');
@@ -113,3 +134,5 @@ else {
 }
 
 ?>
+  </body>
+</html>

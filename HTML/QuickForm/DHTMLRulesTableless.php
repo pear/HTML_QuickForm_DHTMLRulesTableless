@@ -20,8 +20,8 @@
  * @author     Mark Wiesemann <wiesemann@php.net>
  * @copyright  2005-2006 The PHP Group
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
- * @version    CVS: $Id $
- * @link       http://pear.php.net/package/[...]
+ * @version    CVS: $Id$
+ * @link       http://pear.php.net/package/HTML_QuickForm_DHTMLRulesTableless
  */
 
 require_once 'HTML/QuickForm.php';
@@ -39,7 +39,7 @@ require_once 'HTML/QuickForm.php';
  * @author     Mark Wiesemann <wiesemann@php.net>
  * @license    http://www.php.net/license/3_01.txt  PHP License 3.01
  * @version    Release: @package_version@
- * @link       http://pear.php.net/package/[...]
+ * @link       http://pear.php.net/package/HTML_QuickForm_DHTMLRulesTableless
  */
 class HTML_QuickForm_DHTMLRulesTableless extends HTML_QuickForm {
     // {{{ getValidationScript()
