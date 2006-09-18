@@ -57,6 +57,9 @@ form div.qfelement {
     margin: 5px 0 0 10px;
     padding: 0;
 }
+form div.qfreqnote {
+    font-size: 80%; 
+}
 form span.error, form span.required {
     color: red;
 }
@@ -84,6 +87,8 @@ $form->addElement('header', 'header', 'Tableless renderer example (using DHTMLRu
 $form->addElement('text', 'name', 'Your name:', array('style' => 'width: 300px;'));
 $form->addElement('text', 'email', 'Your email:', array('style' => 'width: 300px;'));
 $form->addElement('text', 'emptylabel', '', array('style' => 'width: 300px;'));
+$form->addElement('text', null, 'Element without name:', array('style' => 'width: 300px;'));
+$form->addElement('text', '', 'Element with empty name:', array('style' => 'width: 300px;'));
 $form->addElement('text', 'subject', 'Your subject:', array('style' => 'width: 300px;'));
 $form->addElement('checkbox', 'single', 'Checkbox example:', ' Check me if you agree to receive spam ;-)');
 
@@ -95,6 +100,8 @@ $radio[] = &HTML_QuickForm::createElement('radio', 'country', null, 'Germany', '
 $radio[] = &HTML_QuickForm::createElement('radio', 'country', null, 'Austria', 'austria');
 $radio[] = &HTML_QuickForm::createElement('radio', 'country', null, 'Other', 'other');
 $form->addGroup($radio, 'group1', 'Choose a country:', ' ');
+
+$form->addElement('date', 'date', 'Date:', array('format' => 'Y-m-d H:i', 'optionIncrement' => array('i' => 5)));
 
 $checkbox = array();
 $checkbox[] = &HTML_QuickForm::createElement('checkbox', 'A1', null, 'France');
@@ -112,6 +119,22 @@ $form->addGroup($checkbox, 'group3', 'Choose a country:', '<br />');
 
 $form->addElement('header', 'header3', 'The third fieldset');
 
+$main[0] = 'Pop';
+$main[1] = 'Rock';
+$main[2] = 'Classical';
+
+$secondary[0][0] = 'Belle &amp; Sebastian';
+$secondary[0][1] = 'Elliot Smith';
+$secondary[0][2] = 'Beck';
+$secondary[1][3] = 'Noir Desir';
+$secondary[1][4] = 'Violent Femmes';
+$secondary[2][5] = 'Wagner';
+$secondary[2][6] = 'Mozart';
+$secondary[2][7] = 'Beethoven';
+
+$select =& $form->addElement('hierselect', 'music', 'Please select:');
+$select->setOptions(array($main, $secondary));
+
 $form->addElement('textarea', 'message', 'Your message:', array('style' => 'width: 300px;', 'cols' => 50, 'rows' => '7'));
 $form->addElement('submit', 'submit', 'Submit');
 
@@ -128,9 +151,9 @@ if ($form->isSubmitted() && $form->validate()) {
 }
 else {
   $renderer =& new HTML_QuickForm_Renderer_Tableless();
-  $GLOBALS['_HTML_QuickForm_default_renderer'] =& $renderer;
   $renderer->addStopFieldsetElements('submit');
-  $form->display();
+  $form->accept($renderer);
+  echo $renderer->toHtml();
 }
 
 ?>
