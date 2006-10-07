@@ -84,6 +84,20 @@ $form->addElement('text', 'fieldsetlesselement', 'Element before header:', array
 
 $form->addElement('header', 'header', 'Tableless renderer example (using DHTMLRules)');
 
+$id['lastname'] = &HTML_QuickForm::createElement('text', 'lastname', 'Name', array('size' => 30)); 
+$id['code'] = &HTML_QuickForm::createElement('text', 'code', 'Code', array('size' => 5, 'maxlength' => 4)); 
+$form->addGroup($id, 'id', 'ID:', ',&nbsp'); 
+
+$form->addGroupRule('id', array( 
+    'lastname' => array( 
+        array('Name is required', 'required', null, 'client'), 
+        array('Name is letters only', 'lettersonly', null, 'client') 
+    ), 
+    'code'     => array( 
+        array('Code must be numeric', 'numeric', null, 'client') 
+    ) 
+));
+
 $form->addElement('text', 'name', 'Your name:', array('style' => 'width: 300px;'));
 $form->addElement('text', 'email', 'Your email:', array('style' => 'width: 300px;'));
 $form->addElement('text', 'emptylabel', '', array('style' => 'width: 300px;'));
@@ -150,6 +164,7 @@ if ($form->isSubmitted() && $form->validate()) {
   echo "<p>Thank you</p>\n";
 }
 else {
+  $form->getValidationScript();
   $renderer =& new HTML_QuickForm_Renderer_Tableless();
   $renderer->addStopFieldsetElements('submit');
   $form->accept($renderer);
