@@ -5,24 +5,14 @@ http://pear.php.net/dtd/package-2.0
 http://pear.php.net/dtd/package-2.0.xsd">
  <name>HTML_QuickForm_DHTMLRulesTableless</name>
  <channel>pear.php.net</channel>
- <summary>DHTML replacement for the standard JavaScript alert window for client-side validation using the tableless renderer</summary>
- <description>This is a DHTML replacement for the standard JavaScript alert window for client-side validation of forms built with HTML_QuickForm when using the HTML_QuickForm_Renderer_Tableless renderer.
- 
-Usage: Just do something like this in your code:
-
-require_once 'HTML/QuickForm.php';
-require_once 'HTML/QuickForm/DHTMLRulesTableless.php';
-require_once 'HTML/QuickForm/Renderer/Tableless.php';
-
-$form =&amp; new HTML_QuickForm_DHTMLRulesTableless(...);
-// you can use $form the same way as when instantiating HTML_QuickForm
-$renderer =&amp; new HTML_QuickForm_Renderer_Tableless();
-
-// usual code, e.g. new form fields, rules, ...
-
-$form->getValidationScript();  // needed only for validation on "onChange" events
-$form->accept($renderer);
-echo $renderer->toHtml();</description>
+ <summary>
+  DHTML replacement for the standard JavaScript alert window for client-side
+  validation using the tableless renderer</summary>
+ <description>
+  This is a DHTML replacement for the standard JavaScript alert window for
+  client-side validation of forms built with HTML_QuickForm when using the
+  HTML_QuickForm_Renderer_Tableless renderer.
+ </description>
  <lead>
   <name>Mark Wiesemann</name>
   <user>wiesemann</user>
@@ -32,20 +22,23 @@ echo $renderer->toHtml();</description>
  <date>?</date>
  <time>?</time>
  <version>
-  <release>0.1.4</release>
-  <api>0.1.1</api>
+  <release>0.2.0</release>
+  <api>0.2.0</api>
  </version>
  <stability>
-  <release>alpha</release>
-  <api>alpha</api>
+  <release>beta</release>
+  <api>beta</api>
  </stability>
- <license uri="http://www.php.net/license/3_01.txt">PHP License 3.01</license>
+ <license>New BSD</license>
  <notes>
+- this package is now in beta status, i.e. the API can be considered as stable
+- this package is now licensed under the New BSD license
+- end-user documentation is now available in the manual
 - bugfix: using $form->addGroupRule() caused a fatal PHP error
 - added an example for a group with group rules to the example file
 - added "$form->getValidationScript();" call to the example code (required for
   showing the errors immediately after changing/leaving a form field)
- </notes>
+</notes>
  <contents>
   <dir name="/">
    <dir name="HTML">
@@ -60,6 +53,7 @@ echo $renderer->toHtml();</description>
      <file name="contact_dhtmlrules.php" role="doc" />
     </dir> <!-- /docs/examples -->
    </dir> <!-- /docs -->
+   <file name="LICENSE" role="doc" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
@@ -73,7 +67,7 @@ echo $renderer->toHtml();</description>
    <package>
     <name>HTML_QuickForm_Renderer_Tableless</name>
     <channel>pear.php.net</channel>
-    <min>0.3.3</min>
+    <min>0.4.0</min>
    </package>
   </required>
  </dependencies>
