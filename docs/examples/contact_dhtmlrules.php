@@ -20,8 +20,7 @@ form {
     width: 560px;
 }
 form fieldset {
-    border: 1px solid black;
-    padding: 10px 0;
+    border: 0;
     margin: 0;
     width: 560px;
 }
@@ -29,17 +28,33 @@ form fieldset.hidden {
     border: 0;
 }
 form fieldset legend {
+    white-space: nowrap;
+    background-color: #CCCCCC;
     font-weight: bold;
+    width: 560px;
+    padding: 1px;
+    border: 1px solid green;
+    display: block;
+}
+form fieldset ol {
+    margin: 0;
+    padding: 0;
+}
+form fieldset li {
+    list-style: none;
+    margin: 0;
+    clear: both;
 }
 form label {
     margin: 0 0 0 5px;
 }
-form label.qflabel {
+form label.element {
     display: block;
     float: left;
     width: 150px;
     padding: 0;
     margin: 5px 0 0 0;
+    font-weight: bold;
     text-align: right;
 }
 form input, form textarea, form select {
@@ -51,14 +66,15 @@ form textarea {
 form br {
     clear: left;
 }
-form div.qfelement {
+form div.element {
     display: inline;
     float: left;
     margin: 5px 0 0 10px;
     padding: 0;
 }
-form div.qfreqnote {
+form li.reqnote {
     font-size: 80%; 
+    margin: 5px 0 0 10px;
 }
 form span.error, form span.required {
     color: red;

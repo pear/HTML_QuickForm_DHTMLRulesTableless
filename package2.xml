@@ -38,7 +38,8 @@ http://pear.php.net/dtd/package-2.0.xsd">
 - added an example for a group with group rules to the example file
 - added "$form->getValidationScript();" call to the example code (required for
   showing the errors immediately after changing/leaving a form field)
-</notes>
+- adopted stylesheet changes from the tableless renderer into the example file
+ </notes>
  <contents>
   <dir name="/">
    <dir name="HTML">
