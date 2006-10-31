@@ -33,7 +33,6 @@ form fieldset legend {
     font-weight: bold;
     width: 560px;
     padding: 1px;
-    border: 1px solid green;
     display: block;
 }
 form fieldset ol {
