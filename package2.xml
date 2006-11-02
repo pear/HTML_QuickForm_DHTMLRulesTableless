@@ -19,10 +19,10 @@ http://pear.php.net/dtd/package-2.0.xsd">
   <email>wiesemann@php.net</email>
   <active>yes</active>
  </lead>
- <date>2006-10-31</date>
- <time>14:50:00</time>
+ <date>2006-11-02</date>
+ <time>19:10:00</time>
  <version>
-  <release>0.2.0</release>
+  <release>0.2.1</release>
   <api>0.2.0</api>
  </version>
  <stability>
@@ -31,14 +31,8 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </stability>
  <license>New BSD</license>
  <notes>
-- this package is now in beta status, i.e. the API can be considered as stable
-- this package is now licensed under the New BSD license
-- end-user documentation is now available in the manual
-- bugfix: using $form->addGroupRule() caused a fatal PHP error
-- added an example for a group with group rules to the example file
-- added "$form->getValidationScript();" call to the example code (required for
-  showing the errors immediately after changing/leaving a form field)
-- adopted stylesheet changes from the tableless renderer into the example file
+- no code changes, just adopted the stylesheet changes from the tableless
+  renderer into the example file
  </notes>
  <contents>
   <dir name="/">

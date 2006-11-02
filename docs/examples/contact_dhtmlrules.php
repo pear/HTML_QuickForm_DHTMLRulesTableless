@@ -20,6 +20,8 @@ form {
     width: 560px;
 }
 form fieldset {
+    clear: both;
+    float: left;
     border: 0;
     margin: 0;
     width: 560px;
@@ -40,6 +42,8 @@ form fieldset ol {
     padding: 0;
 }
 form fieldset li {
+    display: block;
+    height: 1px;
     list-style: none;
     margin: 0;
     clear: both;
