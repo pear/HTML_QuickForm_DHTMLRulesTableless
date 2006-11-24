@@ -177,15 +177,15 @@ function qf_errorHandler(element, _qfMsg) {
         foreach ($test as $elementName => $jsArr) {
             // remove group element part of the element name to avoid JS errors
             $singleElementName = $elementName;
-            $elementNameForJS = $elementName;
+            $shortNameForJS = $elementName;
             $bracketPos = strpos($elementName, '[');
             if ($bracketPos !== false) {
-                $elementNameForJS = str_replace(array('[', ']'), '__', $elementName);
+                $shortNameForJS = str_replace(array('[', ']'), '__', $elementName);
                 $singleElementName = substr($elementName, 0, $bracketPos);
                 $groupElementName = substr($elementName, $bracketPos + 1, -1);
             }
             $js .= '
-function validate_' . $this->_attributes['id'] . '_' . $elementNameForJS . '(element) {
+function validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(element) {
   var value = \'\';
   var errFlag = new Array();
   var _qfGroups = {};
@@ -198,26 +198,29 @@ function validate_' . $this->_attributes['id'] . '_' . $elementNameForJS . '(ele
   return qf_errorHandler(element, _qfMsg);
 }
 ';
-            $validateJS .= '
-  ret = validate_' . $this->_attributes['id'] . '_' . $elementNameForJS . '(frm.elements[\'' . $elementName.'\']) && ret;';
             unset($element);
-            if ($singleElementName == $elementName) {  // not a group
-                $element =& $this->getElement($elementName);
+            $element =& $this->getElement($singleElementName);
+            $elementNameForJS = 'frm.elements[\'' . $elementName . '\']';
+            if ($element->getType() === 'group' && $singleElementName === $elementName) {
+                $elementNameForJS = 'document.getElementById(\'' . $element->_elements[0]->getAttribute('id') . '\')';
+            }
+            $validateJS .= '
+  ret = validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '('. $elementNameForJS . ') && ret;';
+            if ($element->getType() !== 'group') {  // not a group
                 $valFunc = 'validate_' . $this->_attributes['id'] . '_' . $elementName . '(this)';
                 $onBlur = $element->getAttribute('onBlur');
                 $onChange = $element->getAttribute('onChange');
                 $element->updateAttributes(array('onBlur' => $onBlur . $valFunc,
                                                  'onChange' => $onChange . $valFunc));
             } else {  // group
-                $group =& $this->getElement($singleElementName);
-                $elements =& $group->getElements();
-                foreach ($elements as $element) {
-                    if ($element->getAttribute('name') == $groupElementName) {
-                        $valFunc = 'validate_' . $this->_attributes['id'] . '_' . $elementNameForJS . '(this)';
-                        $onBlur = $element->getAttribute('onBlur');
-                        $onChange = $element->getAttribute('onChange');
-                        $element->updateAttributes(array('onBlur' => $onBlur . $valFunc,
-                                                         'onChange' => $onChange . $valFunc));
+                $elements =& $element->getElements();
+                for ($i = 0; $i < count($elements); $i++) {
+                    if ($elements[$i]->getAttribute('name') == $groupElementName) {
+                        $valFunc = 'validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(this)';
+                        $onBlur = $elements[$i]->getAttribute('onBlur');
+                        $onChange = $elements[$i]->getAttribute('onChange');
+                        $elements[$i]->updateAttributes(array('onBlur'   => $onBlur . $valFunc,
+                                                              'onChange' => $onChange . $valFunc));
                     }
                 }
             }

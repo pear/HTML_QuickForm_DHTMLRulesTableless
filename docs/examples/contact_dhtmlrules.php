@@ -133,6 +133,7 @@ $radio[] = &HTML_QuickForm::createElement('radio', 'country', null, 'Germany', '
 $radio[] = &HTML_QuickForm::createElement('radio', 'country', null, 'Austria', 'austria');
 $radio[] = &HTML_QuickForm::createElement('radio', 'country', null, 'Other', 'other');
 $form->addGroup($radio, 'group1', 'Choose a country:', ' ');
+$form->addGroupRule('group1', 'Please select a country', 'required', null, 1, client); 
 
 $form->addElement('date', 'date', 'Date:', array('format' => 'Y-m-d H:i', 'optionIncrement' => array('i' => 5)));
 
