@@ -43,7 +43,6 @@ form fieldset ol {
 }
 form fieldset li {
     display: block;
-    height: 1px;
     list-style: none;
     margin: 0;
     clear: both;

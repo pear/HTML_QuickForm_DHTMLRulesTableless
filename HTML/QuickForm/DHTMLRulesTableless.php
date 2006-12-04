@@ -118,49 +118,65 @@ class HTML_QuickForm_DHTMLRulesTableless extends HTML_QuickForm {
             }
         }
         $js = '
-<script type="text/javascript">
-//<![CDATA[
-var lastElementName = "";
+<script type="text/javascript"><!--//--><![CDATA[//><!--
 function qf_errorHandler(element, _qfMsg) {
   div = element.parentNode;
-  var elementName = element.name;
-  var bracketPos = element.name.search(/\[/);
-  if (bracketPos != -1) {
-    var elementName = element.name.slice(0, bracketPos);
-  }
+  var elementName = element.name.replace(/\[/, "_____");
+  var elementName = elementName.replace(/\]/, "_____");
   if (_qfMsg != \'\') {
     span = document.createElement("span");
     span.className = "error";
-    span.appendChild(document.createTextNode(_qfMsg.substring(3)));
+    _qfMsg = _qfMsg.substring(4);
+    span.appendChild(document.createTextNode(_qfMsg));
     br = document.createElement("br");
 
     var errorDiv = document.getElementById(elementName + \'_errorDiv\');
     if (!errorDiv) {
       errorDiv = document.createElement("div");
       errorDiv.id = elementName + \'_errorDiv\';
+    } else {
+      if (   div.firstChild.textContent == \'\'
+          || _qfMsg == div.firstChild.textContent
+         ) {
+        return false;
+      }
     }
     while (errorDiv.firstChild) {
       errorDiv.removeChild(errorDiv.firstChild);
     }
-    
+
     errorDiv.insertBefore(br, errorDiv.firstChild);
     errorDiv.insertBefore(span, errorDiv.firstChild);
-    element.parentNode.insertBefore(errorDiv, element.parentNode.firstChild);
+
+    errorDivInserted = false;
+    for (var i = element.parentNode.childNodes.length - 1; i >= 0; i--) {
+      j = i - 1;
+      if (j >= 0 && element.parentNode.childNodes[j].nodeName == "DIV") {
+        element.parentNode.insertBefore(errorDiv, element.parentNode.childNodes[i]);
+        errorDivInserted = true;
+        break;
+      }
+    }
+    if (!errorDivInserted) {
+      element.parentNode.insertBefore(errorDiv, element.parentNode.firstChild);
+    }
 
     if (div.className.substr(div.className.length - 6, 6) != " error"
         && div.className != "error") {
       div.className += " error";
     }
 
-    lastElementName = elementName;
     return false;
   } else {
-    if (lastElementName == elementName) {
-      return true;
-    }
     var errorDiv = document.getElementById(elementName + \'_errorDiv\');
     if (errorDiv) {
       errorDiv.parentNode.removeChild(errorDiv);
+    }
+    
+    // do not remove the error style from the div tag if there is still an error
+    // message
+    if (div.firstChild.innerHTML != "") {
+      return true;
     }
 
     if (div.className.substr(div.className.length - 6, 6) == " error") {
@@ -169,7 +185,6 @@ function qf_errorHandler(element, _qfMsg) {
       div.className = "";
     }
 
-    lastElementName = elementName;
     return true;
   }
 }';
@@ -231,8 +246,7 @@ function validate_' . $this->_attributes['id'] . '(frm) {
 ' . $validateJS . ';
   return ret;
 }
-//]]>
-</script>';
+//--><!]]></script>';
         return $js;
     } // end func getValidationScript
 
