@@ -55,7 +55,6 @@ http://pear.php.net/dtd/package-2.0.xsd">
      <file name="contact_dhtmlrules.php" role="doc" />
     </dir> <!-- /docs/examples -->
    </dir> <!-- /docs -->
-   <file name="LICENSE" role="doc" />
   </dir> <!-- / -->
  </contents>
  <dependencies>
