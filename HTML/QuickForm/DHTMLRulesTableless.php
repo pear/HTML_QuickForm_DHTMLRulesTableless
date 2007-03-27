@@ -210,12 +210,15 @@ function qf_errorHandler(element, _qfMsg) {
         foreach ($test as $elementName => $jsArr) {
             // remove group element part of the element name to avoid JS errors
             $singleElementName = $elementName;
-            $shortNameForJS = $elementName;
+            $shortNameForJS = str_replace(array('[', ']'), '__', $elementName);
             $bracketPos = strpos($elementName, '[');
             if ($bracketPos !== false) {
-                $shortNameForJS = str_replace(array('[', ']'), '__', $elementName);
                 $singleElementName = substr($elementName, 0, $bracketPos);
                 $groupElementName = substr($elementName, $bracketPos + 1, -1);
+            }
+            if ($bracketPos === false || !$this->elementExists($singleElementName)) {
+                $groupElementName = $elementName;
+                $singleElementName = $elementName;
             }
             $js .= '
 function validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(element) {
@@ -240,7 +243,7 @@ function validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(eleme
             $validateJS .= '
   ret = validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '('. $elementNameForJS . ') && ret;';
             if ($element->getType() !== 'group') {  // not a group
-                $valFunc = 'validate_' . $this->_attributes['id'] . '_' . $elementName . '(this)';
+                $valFunc = 'validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(this)';
                 $onBlur = $element->getAttribute('onBlur');
                 $onChange = $element->getAttribute('onChange');
                 $element->updateAttributes(array('onBlur' => $onBlur . $valFunc,
@@ -248,7 +251,8 @@ function validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(eleme
             } else {  // group
                 $elements =& $element->getElements();
                 for ($i = 0; $i < count($elements); $i++) {
-                    if ($elements[$i]->getAttribute('name') == $groupElementName) {
+                    // $groupElementName is a substring of attribute name of the element
+                    if (strpos($elements[$i]->getAttribute('name'), $groupElementName) === 0) {
                         $valFunc = 'validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(this)';
                         $onBlur = $elements[$i]->getAttribute('onBlur');
                         $onChange = $elements[$i]->getAttribute('onChange');
