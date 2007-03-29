@@ -19,8 +19,8 @@ http://pear.php.net/dtd/package-2.0.xsd">
   <email>wiesemann@php.net</email>
   <active>yes</active>
  </lead>
- <date>2007-03-??</date>
- <time>??</time>
+ <date>2007-03-29</date>
+ <time>17:30:00</time>
  <version>
   <release>0.3.0</release>
   <api>0.3.0</api>
@@ -31,18 +31,24 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </stability>
  <license>New BSD</license>
  <notes>
-- fixed bugs #10082 and #10456: element names with square brackets and group
+- This package can now also be used with HTML_QuickForm_Controller. Instead
+  of using the HTML_QuickForm_Page class, you just need to include the new
+  HTML_QuickForm_PageDHTMLRulesTableless class.
+  (thanks to Sascha Grossenbacher for the request)
+- Fixed bugs #10082 and #10456: element names with square brackets and group
   elements without square brackets weren't handled properly and led to
-  JavaScript errors
+  JavaScript errors.
   (thanks to Adam Ashley, Sascha Grossenbacher and Ken Guest for providing
   patches)
-- (added support for QFC; not ready yet, follows soon)
  </notes>
  <contents>
   <dir name="/">
    <dir name="HTML">
     <dir name="QuickForm">
      <file name="DHTMLRulesTableless.php" role="php">
+      <tasks:replace from="@package_version@" to="version" type="package-info" />
+     </file>
+     <file name="PageDHTMLRulesTableless.php" role="php">
       <tasks:replace from="@package_version@" to="version" type="package-info" />
      </file>
     </dir> <!-- /HTML/QuickForm -->
@@ -57,10 +63,10 @@ http://pear.php.net/dtd/package-2.0.xsd">
  <dependencies>
   <required>
    <php>
-    <min>4.2</min>
+    <min>4.3</min>
    </php>
    <pearinstaller>
-    <min>1.4.9</min>
+    <min>1.5.0</min>
    </pearinstaller>
    <package>
     <name>HTML_QuickForm_Renderer_Tableless</name>
@@ -68,6 +74,13 @@ http://pear.php.net/dtd/package-2.0.xsd">
     <min>0.4.0</min>
    </package>
   </required>
+  <optional>
+   <package>
+    <name>HTML_QuickForm_Controller</name>
+    <channel>pear.php.net</channel>
+    <min>1.0.7</min>
+   </package>
+  </optional>
  </dependencies>
  <phprelease />
 </package>
