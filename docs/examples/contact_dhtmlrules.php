@@ -24,7 +24,7 @@ form fieldset {
     float: left;
     border: 0;
     margin: 0;
-    width: 560px;
+    width: 100%;
 }
 form fieldset.hidden {
     border: 0;
@@ -33,7 +33,7 @@ form fieldset legend {
     white-space: nowrap;
     background-color: #CCCCCC;
     font-weight: bold;
-    width: 560px;
+    width: 100%;
     padding: 1px;
     display: block;
 }
