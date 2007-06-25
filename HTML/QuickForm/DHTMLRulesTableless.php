@@ -137,7 +137,7 @@ class HTML_QuickForm_DHTMLRulesTableless extends HTML_QuickForm {
         }
         $js = '
 <script type="text/javascript"><!--//--><![CDATA[//><!--
-function qf_errorHandler(element, _qfMsg) {
+qf_errorHandler = function(element, _qfMsg) {
   div = element.parentNode;
   var elementName = element.name.replace(/\[/, "_____");
   var elementName = elementName.replace(/\]/, "_____");
@@ -221,7 +221,7 @@ function qf_errorHandler(element, _qfMsg) {
                 $singleElementName = $elementName;
             }
             $js .= '
-function validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(element) {
+validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . ' = function(element) {
   var value = \'\';
   var errFlag = new Array();
   var _qfGroups = {};
@@ -263,7 +263,7 @@ function validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(eleme
             }
         }
         $js .= '
-function validate_' . $this->_attributes['id'] . '(frm) {
+validate_' . $this->_attributes['id'] . ' = function(frm) {
   var ret = true;
 ' . $validateJS . ';
   return ret;
