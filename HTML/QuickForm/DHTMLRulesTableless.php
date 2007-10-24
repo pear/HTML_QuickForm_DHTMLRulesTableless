@@ -220,8 +220,9 @@ qf_errorHandler = function(element, _qfMsg) {
                 $groupElementName = $elementName;
                 $singleElementName = $elementName;
             }
+            $id = str_replace('-', '_', $this->_attributes['id']);
             $js .= '
-validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . ' = function(element) {
+validate_' . $id . '_' . $shortNameForJS . ' = function(element) {
   var value = \'\';
   var errFlag = new Array();
   var _qfGroups = {};
@@ -241,9 +242,9 @@ validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . ' = function(ele
                 $elementNameForJS = 'document.getElementById(\'' . $element->_elements[0]->getAttribute('id') . '\')';
             }
             $validateJS .= '
-  ret = validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '('. $elementNameForJS . ') && ret;';
+  ret = validate_' . $id . '_' . $shortNameForJS . '('. $elementNameForJS . ') && ret;';
             if ($element->getType() !== 'group') {  // not a group
-                $valFunc = 'validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(this)';
+                $valFunc = 'validate_' . $id . '_' . $shortNameForJS . '(this)';
                 $onBlur = $element->getAttribute('onBlur');
                 $onChange = $element->getAttribute('onChange');
                 $element->updateAttributes(array('onBlur' => $onBlur . $valFunc,
@@ -253,7 +254,7 @@ validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . ' = function(ele
                 for ($i = 0; $i < count($elements); $i++) {
                     // $groupElementName is a substring of attribute name of the element
                     if (strpos($elements[$i]->getAttribute('name'), $groupElementName) === 0) {
-                        $valFunc = 'validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . '(this)';
+                        $valFunc = 'validate_' . $id . '_' . $shortNameForJS . '(this)';
                         $onBlur = $elements[$i]->getAttribute('onBlur');
                         $onChange = $elements[$i]->getAttribute('onChange');
                         $elements[$i]->updateAttributes(array('onBlur'   => $onBlur . $valFunc,
@@ -263,7 +264,7 @@ validate_' . $this->_attributes['id'] . '_' . $shortNameForJS . ' = function(ele
             }
         }
         $js .= '
-validate_' . $this->_attributes['id'] . ' = function(frm) {
+validate_' . $id . ' = function(frm) {
   var ret = true;
 ' . $validateJS . ';
   return ret;
