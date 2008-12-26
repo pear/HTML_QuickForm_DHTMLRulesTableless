@@ -31,8 +31,10 @@ http://pear.php.net/dtd/package-2.0.xsd">
  </stability>
  <license>New BSD</license>
  <notes>
-- Bug #12166: form names containing dashes ('-') caused JavaScript errors
-  (thanks to Jeff MacDonald)
+- Bug #15301: JavaScript errors occured if addGroupRule() was used in
+  the short notation (i.e. a general rule like 'required' for all group
+  elements, and not rules for single elements of a group)
+  (thanks to Gery Flament)
  </notes>
  <contents>
   <dir name="/">

@@ -239,7 +239,12 @@ validate_' . $id . '_' . $shortNameForJS . ' = function(element) {
             $element =& $this->getElement($singleElementName);
             $elementNameForJS = 'frm.elements[\'' . $elementName . '\']';
             if ($element->getType() === 'group' && $singleElementName === $elementName) {
-                $elementNameForJS = 'document.getElementById(\'' . $element->_elements[0]->getAttribute('id') . '\')';
+                $firstFieldId = $element->_elements[0]->getAttribute('id');
+                if ($firstFieldId) {
+                    $elementNameForJS = 'document.getElementById(\'' . $firstFieldId . '\')';
+                } else {
+                    $elementNameForJS = 'frm.elements[\'' . $element->getElementName(0) . '\']';
+                }
             }
             $validateJS .= '
   ret = validate_' . $id . '_' . $shortNameForJS . '('. $elementNameForJS . ') && ret;';
