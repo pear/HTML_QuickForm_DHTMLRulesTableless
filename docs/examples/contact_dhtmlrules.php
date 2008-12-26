@@ -75,7 +75,7 @@ form div.element {
     padding: 0;
 }
 form li.reqnote {
-    font-size: 80%; 
+    font-size: 80%;
     margin: 5px 0 0 10px;
 }
 form span.error, form span.required {
@@ -102,18 +102,18 @@ $form->addElement('text', 'fieldsetlesselement', 'Element before header:', array
 
 $form->addElement('header', 'header', 'Tableless renderer example (using DHTMLRules)');
 
-$id['lastname'] = &HTML_QuickForm::createElement('text', 'lastname', 'Name', array('size' => 30)); 
-$id['code'] = &HTML_QuickForm::createElement('text', 'code', 'Code', array('size' => 5, 'maxlength' => 4)); 
-$form->addGroup($id, 'id', 'ID:', ',&nbsp'); 
+$id['lastname'] = &HTML_QuickForm::createElement('text', 'lastname', 'Name', array('size' => 30));
+$id['code'] = &HTML_QuickForm::createElement('text', 'code', 'Code', array('size' => 5, 'maxlength' => 4));
+$form->addGroup($id, 'id', 'ID:', ',&nbsp');
 
-$form->addGroupRule('id', array( 
-    'lastname' => array( 
-        array('Name is required', 'required', null, 'client'), 
-        array('Name is letters only', 'lettersonly', null, 'client') 
-    ), 
-    'code'     => array( 
-        array('Code must be numeric', 'numeric', null, 'client') 
-    ) 
+$form->addGroupRule('id', array(
+    'lastname' => array(
+        array('Name is required', 'required', null, 'client'),
+        array('Name is letters only', 'lettersonly', null, 'client')
+    ),
+    'code'     => array(
+        array('Code must be numeric', 'numeric', null, 'client')
+    )
 ));
 
 $form->addElement('text', 'name', 'Your name:', array('style' => 'width: 300px;'));
@@ -132,7 +132,7 @@ $radio[] = &HTML_QuickForm::createElement('radio', 'country', null, 'Germany', '
 $radio[] = &HTML_QuickForm::createElement('radio', 'country', null, 'Austria', 'austria');
 $radio[] = &HTML_QuickForm::createElement('radio', 'country', null, 'Other', 'other');
 $form->addGroup($radio, 'group1', 'Choose a country:', ' ');
-$form->addGroupRule('group1', 'Please select a country', 'required', null, 1, client); 
+$form->addGroupRule('group1', 'Please select a country', 'required', null, 1, client);
 
 $form->addElement('date', 'date', 'Date:', array('format' => 'Y-m-d H:i', 'optionIncrement' => array('i' => 5)));
 

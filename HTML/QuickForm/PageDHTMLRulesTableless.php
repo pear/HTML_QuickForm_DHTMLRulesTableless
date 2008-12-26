@@ -4,7 +4,7 @@
  * validation
  *
  * LICENSE:
- * 
+ *
  * Copyright (c) 2005-2007, Mark Wiesemann <wiesemann@php.net>
  * All rights reserved.
  *
@@ -15,9 +15,9 @@
  *    * Redistributions of source code must retain the above copyright
  *      notice, this list of conditions and the following disclaimer.
  *    * Redistributions in binary form must reproduce the above copyright
- *      notice, this list of conditions and the following disclaimer in the 
+ *      notice, this list of conditions and the following disclaimer in the
  *      documentation and/or other materials provided with the distribution.
- *    * The names of the authors may not be used to endorse or promote products 
+ *    * The names of the authors may not be used to endorse or promote products
  *      derived from this software without specific prior written permission.
  *
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
@@ -65,7 +65,7 @@ class HTML_QuickForm_PageDHTMLRulesTableless extends HTML_QuickForm_Page
 {
    /**
     * Class constructor
-    * 
+    *
     * @access public
     */
     function HTML_QuickForm_PageDHTMLRulesTableless($formName, $method = 'post',
@@ -202,7 +202,7 @@ qf_errorHandler = function(element, _qfMsg) {
     if (errorDiv) {
       errorDiv.parentNode.removeChild(errorDiv);
     }
-    
+
     // do not remove the error style from the div tag if there is still an error
     // message
     if (div.firstChild.innerHTML != "") {
