@@ -8,7 +8,7 @@
     ],
     "autoload": {
         "psr-0": {
-            "HTML_QuickForm_DHTMLRulesTableless": "./"
+            "HTML": "./"
         }
     },
     "description": "More info available on: http://pear.php.net/package/HTML_QuickForm_DHTMLRulesTableless",
@@ -23,9 +23,13 @@
     },
     "type": "library",
     "require": {
-        "pear/pear_exception": "*"
+        "pear/pear_exception": "*",
+        "pear/html_quickform_renderer_tableless": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
+    },
+    "suggest": {
+        "pear/html_quickform_controller": "Install optionally via your project's composer.json"
     }
 }
