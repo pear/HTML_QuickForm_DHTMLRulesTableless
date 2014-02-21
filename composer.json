@@ -1,0 +1,35 @@
+{
+    "authors": [
+        {
+            "email": "wiesemann@php.net",
+            "name": "Mark Wiesemann",
+            "role": "Lead"
+        }
+    ],
+    "autoload": {
+        "psr-0": {
+            "HTML": "./"
+        }
+    },
+    "description": "More info available on: http://pear.php.net/package/HTML_QuickForm_DHTMLRulesTableless",
+    "include-path": [
+        "./"
+    ],
+    "license": "New BSD",
+    "name": "pear/html_quickform_dhtmlrulestableless",
+    "support": {
+        "issues": "http://pear.php.net/bugs/search.php?cmd=display&package_name[]=HTML_QuickForm_DHTMLRulesTableless",
+        "source": "https://github.com/pear/HTML_QuickForm_DHTMLRulesTableless"
+    },
+    "type": "library",
+    "require": {
+        "pear/pear_exception": "*",
+        "pear/html_quickform_renderer_tableless": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "*"
+    },
+    "suggest": {
+        "pear/html_quickform_controller": "Install optionally via your project's composer.json"
+    }
+}
